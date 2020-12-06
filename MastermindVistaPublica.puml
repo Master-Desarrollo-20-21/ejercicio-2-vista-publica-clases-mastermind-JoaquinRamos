@@ -48,9 +48,10 @@ class Combinación {
 
     'Comprobaciones de la Valided de su existencia
     + esVálida() : boolean
-    + esLongitudCorrecta() : boolean
-    + sonColoresAdecuados() : boolean
-    + hayColoresRepetidos() : boolean
+    + obtenerError() : String
+    - esLongitudCorrecta() : boolean
+    - sonColoresAdecuados() : boolean
+    - hayColoresRepetidos() : boolean
 
     'Comparación con otra Combinacion, o con una posición de esta o si un color sí vale
     + esIgual(Combinación) : boolean
