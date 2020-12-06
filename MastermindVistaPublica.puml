@@ -1,0 +1,110 @@
+
+@startuml name Mastermind_JoaquinRamos_VistaPublica
+
+'Clases
+
+class Mastermind {
+    - tablero : Tablero
+    + jugar() : void
+}
+
+class Tablero {
+    -numIntentosMáximo : int
+    - combinaciónSecreta : CombinaciónSecreta
+    - combinacionesPropuestas : CombinaciónPropuesta[]
+    - resultadosObtenidos : Resultado[]
+
+    + generarCombinacionSecreta()
+    +intentarAdivinar()
+    +mostrarResultadoDelIntento()
+}
+
+class Intento{
+    - resultado : Resultado
+
+    + Intento(CombinaciónSecreta)
+
+    +getResultado() : Resultado
+    - recogerCombinaciónPropuesta() : void
+    - compruebaCombinaciónPropuestaVálida() : void
+    - mostrarError() : void
+    - crearResultadoDelIntento() : void
+
+}
+
+class Resultado{
+    - resultado : ColorResultado[longitud]
+}
+
+class GestorIO{
+    + inString () : String    
+    + out (String) : void
+}
+
+class Combinación {
+    -longitud : int    
+    - combinacion : ColorCombinación[longitud]
+    + Combinación()
+
+    'Comprobaciones de la Valided de su existencia
+    + esVálida() : boolean
+    + esLongitudCorrecta() : boolean
+    + sonColoresAdecuados() : boolean
+    + hayColoresRepetidos() : boolean
+
+    'Comparación con otra Combinacion, o con una posición de esta o si un color sí vale
+    + esIgual(Combinación) : boolean
+    + esIgualPosición(Combinación, int) : boolean
+    + contieneColorDePosición(Combinación, int) : boolean
+}
+
+class CombinaciónSecreta {
+    + CombinaciónSecreta()
+}
+
+class CombinaciónPropuesta {
+    + CombinaciónPropuesta()
+}
+
+
+'Enumerados
+Enum ColorCombinación{
+    Verde
+    Rojo
+    Amarillo
+    Azul
+    Rosa
+    Violeta
+    + getKey() : int
+    + valueOf() : ColorCombinación
+}
+
+Enum ColorResultado{
+    Blanco
+    Negro
+    + getKey() : int
+    + valueOf() : ColorResultado
+}
+
+
+'Relaciones
+
+Mastermind *-down-> Tablero
+
+
+Tablero *--> CombinaciónSecreta
+Tablero *-->  "0..10" Intento
+Tablero .down.> GestorIO
+
+CombinaciónSecreta-up-|> Combinación 
+CombinaciónPropuesta -up-|> Combinación 
+
+Combinación o-down-> "4" ColorCombinación
+
+Intento *--> CombinaciónPropuesta
+Intento *-down-> Resultado
+Intento .down.> GestorIO
+
+Resultado o-down-> "4" ColorResultado
+
+@enduml
