@@ -11,19 +11,20 @@ class Mastermind {
 class Tablero {
     -numIntentosMáximo : int
     - combinaciónSecreta : CombinaciónSecreta
-    - combinacionesPropuestas : CombinaciónPropuesta[]
-    - resultadosObtenidos : Resultado[]
+    - intentos : Intento[numIntentosMáximo]
 
-    + generarCombinacionSecreta()
-    +intentarAdivinar()
-    +mostrarResultadoDelIntento()
+    + generarCombinacionSecreta() : void
+    +intentarAdivinar() : void
+    +mostrarResultadoDelIntento() : void
 }
 
 class Intento{
+    -combinaciónPropuesta: CombinaciónPropuesta
     - resultado : Resultado
 
     + Intento(CombinaciónSecreta)
 
+    +getCombinación() : Resultado
     +getResultado() : Resultado
     - recogerCombinaciónPropuesta() : void
     - compruebaCombinaciónPropuestaVálida() : void
